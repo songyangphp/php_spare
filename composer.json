@@ -1,0 +1,37 @@
+{
+  "name": "epii/epiiadmin-project",
+  "type": "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://master.packagist.wenshi.jt/"
+    }
+  ],
+  "authors": [
+    {
+      "name": "MrRen",
+      "email": "543169072@qq.com"
+    }
+  ],
+  "require": {
+    "epii/epiiadmin-app": "1.0.0",
+    "epii/epiiadmin-demo": "dev-master",
+    "topthink/framework": "5.1.*",
+    "xaboy/form-builder": "dev-master"
+  },
+
+
+
+  "minimum-stability": "dev",
+  "scripts": {
+    "post-create-project-cmd": [
+      "php delsubgit.php create"
+    ],
+    "post-install-cmd": [
+      "php delsubgit.php install"
+    ],
+    "post-update-cmd": [
+      "php delsubgit.php update"
+    ]
+  }
+}
