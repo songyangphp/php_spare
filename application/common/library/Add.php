@@ -29,7 +29,7 @@ class Add
     private static function InsertSpare($now_version,$name,$remake,$author,$ident){
         if(Db::name("spare")->where("name = '$name'")->find()) return false;
 
-        $insertData = ["now_version" => $now_version , "name" => $name , "remake" => $remake , "author" => $author , "addtime" => time() , "ident" => $ident];
+        $insertData = ["now_version" => $now_version , "name" => $name , "remake" => $remake , "author" => $author , "addtime" => time() , "ident" => $ident];//epiiadmin
 
         $Lastsid = Db::name("spare")->insertGetId($insertData);
         if($Lastsid){
