@@ -40,8 +40,9 @@ class Index extends EpiiController
         $vid = $this->request->param("vid/s");
         $conpath = $this->request->param("conpath/s");
         $dbpre = $this->request->param("dbpre/s");
+        $ident = $this->request->param("ident/s");
         /*echo json_encode([$sid,$vid,$conpath,$dbpre]);die;*/
-        $spare = new SpareInit($sid,$vid,$conpath,$dbpre);
+        $spare = new SpareInit($sid,$vid,$ident,$conpath,$dbpre);
         $fileInit = $spare->insertFile();
         $databaseInit = $spare->insertDatabase();
 

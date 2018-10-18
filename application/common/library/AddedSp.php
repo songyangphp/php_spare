@@ -8,8 +8,8 @@
 namespace app\common\library;
 class AddedSp
 {
-    public static function Added($files,$now_version,$name,$remake,$author){
-        $callback = Add::InsertData($now_version,$name,$remake,$author);
+    public static function Added($files,$now_version,$name,$remake,$author,$ident){
+        $callback = Add::InsertData($now_version,$name,$remake,$author,$ident);
         if(!$callback) return false;
 
         $re = UploadFile::uploadFile($files,$callback);

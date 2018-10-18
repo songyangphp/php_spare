@@ -16,18 +16,23 @@ class SpareInit
     protected $_vid;
     protected $_conpath;
     protected $_dbpre;
+    protected $_ident;
 
-    public function __construct($sid,$vid,$path='',$dbpre=''){
+    public function __construct($sid,$vid,$ident,$path='',$dbpre=''){
         $this->_sid = $sid;
         $this->_vid = $vid;
         $this->_conpath = urldecode($path);
         $this->_dbpre = urldecode($dbpre);
+        $this->_ident = urldecode($ident);
 
         $class = "Config".$this->_sid."_".$this->_vid;
         $path = __DIR__ . "\\". $class.".php";
 
-        if(!file_exists($path)){
-            echo -1;exit;
+        if(!file_exists($path)){ //如果没有配置文件的话走通用安装程序
+            $class = "CurrInsertSystem";
+            $path = __DIR__ . "\\"."CurrInsertSystem.php";
+            require_once $path;
+            $this->_class = new $class($this->_sid,$this->_vid);
         }else{
             require_once $path;
             $this->_class = new $class($this->_sid,$this->_vid);
@@ -37,7 +42,7 @@ class SpareInit
 
     public function insertFile(){
         $function = "insertFile";
-        return $this->_class->{$function}($this->_conpath);
+        return $this->_class->{$function}($this->_ident,$this->_conpath);
     }
 
     public function insertDatabase(){

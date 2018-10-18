@@ -10,12 +10,12 @@ use think\Db;
 use think\exception\DbException;
 class Add
 {
-    public static function InsertData($now_version,$name,$remake,$author){
-        if(empty($now_version) || empty($name) ||empty($remake) ||empty($author)) return false;
+    public static function InsertData($now_version,$name,$remake,$author,$ident){
+        if(empty($now_version) || empty($name) ||empty($remake) ||empty($author) ||empty($ident)) return false;
 
         Db::startTrans();
         try{
-            $lastsid = self::InsertSpare($now_version,$name,$remake,$author);
+            $lastsid = self::InsertSpare($now_version,$name,$remake,$author,$ident);
             $lastvid = self::InsertVersion($lastsid,$now_version,$remake);
             Db::commit();
             return ['lastsid' => $lastsid , 'lastvid' => $lastvid];
@@ -26,10 +26,10 @@ class Add
         }
     }
 
-    private static function InsertSpare($now_version,$name,$remake,$author){
+    private static function InsertSpare($now_version,$name,$remake,$author,$ident){
         if(Db::name("spare")->where("name = '$name'")->find()) return false;
 
-        $insertData = ["now_version" => $now_version , "name" => $name , "remake" => $remake , "author" => $author , "addtime" => time()];
+        $insertData = ["now_version" => $now_version , "name" => $name , "remake" => $remake , "author" => $author , "addtime" => time() , "ident" => $ident];
 
         $Lastsid = Db::name("spare")->insertGetId($insertData);
         if($Lastsid){

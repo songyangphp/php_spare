@@ -2,11 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2018-10-16
- * Time: 11:16
+ * Date: 2018-10-18
+ * Time: 11:43
  */
-use think\Exception;
-class Config1_3 implements ISpare
+//通用安装程序
+class CurrInsertSystem implements ISpare
 {
     private $sid; //插件id
     private $vid; //版本id
@@ -65,24 +65,6 @@ class Config1_3 implements ISpare
 
     public function insertDatabase($dbpre='')//数据库安装器 返回sql语句 回调执行
     {
-        if(empty($dbpre)){
-            echo "no dbpre";exit;
-        }
-
-        $sql =
-            "CREATE TABLE `".$dbpre."suser` (
-              `id` int(11) NOT NULL AUTO_INCREMENT,
-              `username` varchar(255) NOT NULL,
-              `phone` int(11) NOT NULL,
-              `password` varchar(255) NOT NULL,
-              `addtime` int(11) NOT NULL,
-              PRIMARY KEY (`id`),
-              KEY `phone` (`phone`),
-              KEY `addtime` (`addtime`),
-              KEY `addtime_2` (`addtime`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-
-        $out[] = ["table_name" => $dbpre.'suser' , "sql" => $sql];
-        return $out;
+        return true;
     }
 }

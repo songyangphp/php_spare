@@ -19,8 +19,9 @@ class Addedspare extends EpiiController
             $name = $this->request->param("name/s");
             $remake = $this->request->param("remake/s");
             $author = $this->request->param("author/s");
+            $ident = $this->request->param("ident/s");
 
-            $re = AddedSp::Added($files,$now_version,$name,$remake,$author);
+            $re = AddedSp::Added($files,$now_version,$name,$remake,$author,$ident);
 
             dump($re);
         }else{
