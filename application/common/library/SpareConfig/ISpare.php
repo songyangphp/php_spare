@@ -9,8 +9,6 @@
 interface ISpare
 {
     public function insertFile($conpath);//文件安装器
-
-
-
+    
     public function insertDatabase($dbpre);//数据库安装器
 }
