@@ -18,15 +18,9 @@ class CurrInsertSystem implements ISpare
 
     public function insertFile($ident,$conpath='')//文件安装器
     {
-        if(empty($conpath)){
-            return false;
-        }
-        if(!file_exists($conpath)){ //检测用户控制器目录
-            return false;
-        }
-        if(!file_exists(str_replace("controller","view",$conpath))){ //检测用户模板目录
-            return false;
-        }
+        if(empty($conpath)) return false;
+        if(!file_exists($conpath)) return false;//检测用户控制器目录
+        if(!file_exists(str_replace("controller","view",$conpath))) return false; //检测用户模板目录
 
         $controller_dir = $conpath."\\".$ident;
         $view_dir = str_replace("controller","view",$conpath)."\\".$ident;
@@ -57,6 +51,7 @@ class CurrInsertSystem implements ISpare
                 return true;
             }catch (Exception $e){
                 echo $e->getMessage();
+                return false;
             }
         }else{
             return false; //"directory already exists";
