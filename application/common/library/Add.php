@@ -21,8 +21,7 @@ class Add
             return ['lastsid' => $lastsid , 'lastvid' => $lastvid];
         }catch (DbException $e){
             Db::rollback();
-            echo $e->getMessage();
-            return false;
+            echo $e->getMessage();die;
         }
     }
 
