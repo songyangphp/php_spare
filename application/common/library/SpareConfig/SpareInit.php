@@ -31,12 +31,10 @@ class SpareInit
         if(!file_exists($path)){ //如果没有配置文件的话走通用安装程序
             $class = "CurrInsertSystem";
             $path = __DIR__ . "\\"."CurrInsertSystem.php";
-            require_once $path;
-            $this->_class = new $class($this->_sid,$this->_vid);
-        }else{
-            require_once $path;
-            $this->_class = new $class($this->_sid,$this->_vid);
         }
+
+        require_once $path;
+        $this->_class = new $class($this->_sid,$this->_vid);
     }
 
 
