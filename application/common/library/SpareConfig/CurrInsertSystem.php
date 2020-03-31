@@ -26,7 +26,7 @@ class CurrInsertSystem implements ISpare
         $view_dir = str_replace("controller","view",$conpath)."\\".$ident;
 
         if (!file_exists($controller_dir) && !file_exists($view_dir)){
-            //建立目标目录
+            //建立目标目录 默认最高权限
             mkdir($controller_dir,0777,true);
             mkdir($view_dir,0777,true);
 
